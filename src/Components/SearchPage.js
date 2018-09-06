@@ -20,7 +20,7 @@ class SearchPage extends React.Component{
         if (!searchedBooks || searchedBooks.hasOwnProperty('error')) {
           this.setState({ searchedBooks: [] });
         } else {
-          this.setState({ searchedBooks: searchedBooks});
+          this.setState({ searchedBooks: searchedBooks });
         }
       })
     } else {
@@ -29,6 +29,9 @@ class SearchPage extends React.Component{
   }
 
   render(){
+
+    const {changeShelf} = this.props
+
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -40,8 +43,8 @@ class SearchPage extends React.Component{
             <input
               type="text"
               placeholder="Search by title or author"
-              value={this.state.books}
-              onChange={(event) => this.updateBooks(event.target.value)}
+              value={ this.state.books }
+              onChange={ (event) => this.updateBooks(event.target.value) }
              />
           </div>
         </div>
@@ -57,11 +60,11 @@ class SearchPage extends React.Component{
               ));
 
               return (
-                <li key={searchedBook.id}>
+                <li key={ searchedBook.id }>
                   <BookList
-                    book={searchedBook}
-                    changeShelf={this.props.changeShelf}
-                    currentShelf={shelf}
+                    book={ searchedBook }
+                    changeShelf={ changeShelf }
+                    currentShelf={ shelf }
                   />
                 </li>
               );
@@ -70,7 +73,6 @@ class SearchPage extends React.Component{
           </ol>
         </div>
       </div>
-
     );
   }
 }

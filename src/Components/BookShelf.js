@@ -6,11 +6,14 @@ import ReadShelf from './ReadShelf'
 
 class BookShelf extends React.Component{
   render(){
+
+    const { books, changeShelf } = this.props
+
     return(
       <div className="list-books-content">
-        < CurrentlyReadingShelf changeShelf={this.props.changeShelf} books={this.props.books} />
-        < WantToReadShelf changeShelf={ this.props.changeShelf } books={ this. props.books } />
-        < ReadShelf changeShelf={ this.props.changeShelf } books={ this.props.books } />
+        <CurrentlyReadingShelf changeShelf={ changeShelf } books={ books } />
+        <WantToReadShelf changeShelf={ changeShelf } books={ books } />
+        <ReadShelf changeShelf={ changeShelf } books={ books } />
       </div>
     )
   }

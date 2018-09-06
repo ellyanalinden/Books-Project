@@ -1,26 +1,29 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import BookList from './BookList'
 
 class WantToReadShelf extends React.Component{
 
-  static defaultProps = { // <-- DEFAULT PROPS
-        books: []       // undefined gets converted to array,render won't trigger error
-    }
-    
+  /* Default Props, undefined gets converted to array, render won't trigger error*/
+  static defaultProps = { books: [] }
+
   render(){
+
+    const { books, changeShelf } = this.props
+
     return (
       <div className="bookshelf">
         <h2 className="bookshelf-title">Want To Read</h2>
         <div className="bookshelf-books">
           <ol className="books-grid">
           {
-            this.props.books
+            books
             .filter(book => book.shelf === 'wantToRead')
             .map(book => (
-              <li key={book.id} >
+              <li key={ book.id } >
                 <BookList
-                  book={book}
-                  changeShelf={this.props.changeShelf}
+                  book={ book }
+                  changeShelf={ changeShelf }
                   currentShelf="wantToRead"
                 />
               </li>
@@ -33,5 +36,9 @@ class WantToReadShelf extends React.Component{
   }
 }
 
+WantToReadShelf.propTypes = {
+  books: PropTypes.array.isRequired,
+  changeShelf: PropTypes.func.isRequired,
+}
 
 export default WantToReadShelf

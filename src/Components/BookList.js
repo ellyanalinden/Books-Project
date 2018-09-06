@@ -3,24 +3,29 @@ import PropTypes from 'prop-types'
 
 class BookList extends React.Component{
   render(){
+
+    const { book, changeShelf, currentShelf } = this.props
+
     return(
       <div className="book">
         <div className="book-top">
+
           <div
               className="book-cover"
               style={{
                 width: 128,
                 height: 193,
                 backgroundImage: `url(${
-                  this.props.book.imageLinks ? this.props.book.imageLinks.thumbnail : ''
+                  book.imageLinks ? book.imageLinks.thumbnail : ''
                 })`}}>
           </div>
+
           <div className="book-shelf-changer">
             <select
-              onChange={(event) => this.props.changeShelf(
-                this.props.book, event.target.value
+              onChange={ (event) => changeShelf(
+                book, event.target.value
               )}
-              value={this.props.currentShelf}
+              value={ currentShelf }
               >
               <option value="move" disabled>Move to...</option>
               <option value="currentlyReading">Currently Reading</option>
@@ -29,9 +34,12 @@ class BookList extends React.Component{
               <option value="none">None</option>
             </select>
           </div>
+
         </div>
-        <div className="book-title">{this.props.book.title}</div>
-        <div className="book-authors">{this.props.book.authors}</div>
+
+        <div className="book-title">{ book.title }</div>
+        <div className="book-authors">{ book.authors }</div>
+
       </div>
     );
   }
